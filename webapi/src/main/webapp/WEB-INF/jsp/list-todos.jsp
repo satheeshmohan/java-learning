@@ -30,8 +30,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
-		<div><a type="button" href="/todo">Add a Todo</a></div>
-	    <div><a type="button" href="/home">Home</a></div>
+    <div><a type="button" href="/home">Home</a></div>
+	<div><a type="button" href="/todo">Add a Todo</a></div>
 	</div>
 	
 	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>

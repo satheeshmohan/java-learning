@@ -2,7 +2,26 @@ package com.pigeon.framework.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Profile {
+	public String name;
+	@NotNull()
+	public String email;
+	public String dob;
+	public String address;
+	public String city;
+	public String country;
+	//@Length(min = 6, max = 6, message = "Pin code should be 6 digit...")
+	public String pin;
+	
+	public Profile() {
+		
+	}
+	
 	public Profile(String name, String email, String dob, String address, String city, String country, String pin) {
 		this.name=name;
 		this.email=email;
@@ -77,11 +96,4 @@ public class Profile {
 	public void setPin(String pin) {
 		this.pin = pin;
 	}
-	public String name;
-	public String email;
-	public String dob;
-	public String address;
-	public String city;
-	public String country;
-	public String pin;
 }

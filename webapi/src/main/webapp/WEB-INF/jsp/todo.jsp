@@ -17,10 +17,9 @@
 				</fieldset>
 				<button type="submit" class="btn btn-success">Add</button>
 			</form:form>
-	
-		<div>
-			<a href="/list-todos">Manage Todos</a>
-		</div>
+
+	    <div><a type="button" href="/home">Home</a></div>
+		<div><a type="button" href="/list-todos">Manage Todos</a></div>
 	</div>
 	
 	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>

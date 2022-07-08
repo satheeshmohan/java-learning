@@ -1,36 +1,66 @@
 package com.pigeon.framework.webapi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pigeon.framework.model.Profile;
 import com.pigeon.framework.webapi.service.ProfileService;
 
 @Controller
+@SessionAttributes("name")
 public class ProfileController {
 
 	@Autowired
 	ProfileService service;
 	
 	@RequestMapping(value = "/myprofile", method = RequestMethod.GET)
-	public String myProfile(ModelMap model, @RequestParam String username) {
-		Profile profileModel = service.getProfile(username);
-		model.clear();
+	public String myProfile(ModelMap model) {
+		String name = (String) model.get("name");
+		model.addAttribute("profile", new Profile(name, "", "", "", "", "", ""));
+		Profile profileModel = service.getProfile(name);
+		model.put("profile", profileModel);
+		/*model.clear();
 		model.put("name", profileModel.name);
 		model.put("email", profileModel.email);
 		model.put("dob", profileModel.dob);
 		model.put("address", profileModel.address);
 		model.put("city", profileModel.city);
 		model.put("country", profileModel.country);
-		model.put("pin", profileModel.pin);
+		model.put("pin", profileModel.pin);*/
 		return "myprofile";
 	}
 	
 	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
+	public String saveMyProfile(ModelMap model, @Valid Profile profile, BindingResult results) {
+		if(results.hasErrors()) {
+			return "myprofile";
+		}
+		System.out.println(profile.name);
+		//Profile profile = new Profile(name, email, dob, address, city, country, pin); 
+		Profile profileModel = service.saveProfile(profile);
+		profileModel = service.getProfile(profile.name);
+		System.out.println(profile.name);
+		model.put("profile", profileModel);
+		/*model.clear();
+		model.put("name", profileModel.name);
+		model.put("email", profileModel.email);
+		model.put("dob", profileModel.dob);
+		model.put("address", profileModel.address);
+		model.put("city", profileModel.city);
+		model.put("country", profileModel.country);
+		model.put("pin", profileModel.pin);*/
+		return "myprofile";
+	}
+	
+	/*@RequestMapping(value = "myprofile", method = RequestMethod.POST)
 	public String saveMyProfile(ModelMap model, 
 			@RequestParam String name,
 			@RequestParam String email,
@@ -54,5 +84,5 @@ public class ProfileController {
 		model.put("country", profileModel.country);
 		model.put("pin", profileModel.pin);
 		return "myprofile";
-	}
+	}*/
 }
