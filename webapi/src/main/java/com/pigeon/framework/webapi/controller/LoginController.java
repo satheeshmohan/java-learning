@@ -39,7 +39,7 @@ public class LoginController {
 		//return "welcome";
 		if(!isValidUser) {
 			model.put("validationMessage", "Invalid username or password");
-			return "error";
+			return "login";
 		}
 		else {
 			model.put("name", name);

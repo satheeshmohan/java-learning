@@ -3,12 +3,20 @@ package com.pigeon.framework.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.Size;
+
 public class Todo {
 	public int id;
 	public String user;
+	
+	@Size(min = 10, message="Enter at least 10 chars...")
 	public String desc;
 	public Date targetDate;
 	public boolean isDone;
+	
+	public Todo() {
+		super();
+	}
 	
 	public Todo(int id, String user, String desc, Date targetDate, boolean isDone) {
 		super();

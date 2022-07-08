@@ -2,9 +2,12 @@ package com.pigeon.framework.webapi.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.pigeon.framework.model.Todo;
 import com.pigeon.framework.webapi.service.TodoService;
 
 @Controller
@@ -22,23 +26,26 @@ public class TodoController {
 	TodoService service;
 
 	@RequestMapping(value="/list-todos", method = RequestMethod.GET)
-	public String showTodosList(ModelMap model) {
+	public String showTodosListPage(ModelMap model) {
 		String name = (String) model.get("name");
 		model.put("todos", service.getTodos(name));
 		return "list-todos";
 	}
 
 	@RequestMapping(value="/todo", method = RequestMethod.GET)
-	public String showAddTodo(ModelMap model) {
+	public String showAddTodoPage(ModelMap model) {
 		String name = (String) model.get("name");
+		model.addAttribute("todo", new Todo(0, (String) model.get("name"), "", new Date(), false));
 		model.put("todos", service.getTodos(name));
 		return "todo";
 	}
 
 	@RequestMapping(value="/todo", method = RequestMethod.POST)
-	public String addTodo(ModelMap model, @RequestParam String desc) {
-		String name = (String) model.get("name");
-		service.addTodo(name, desc, new Date(), false);
+	public String addTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+		if(result.hasErrors()){
+			return "todo";
+		}
+		service.addTodo((String) model.get("name"), todo.desc, new Date(), false);
 		//model.put("todos", service.getTodos(name));
 		return "redirect:/list-todos";
 	}
@@ -46,6 +53,26 @@ public class TodoController {
 	@RequestMapping(value="/delete-todo", method = RequestMethod.GET)
 	public String deleteTodo(ModelMap model, @RequestParam int id) {
 		service.deleteTodo(id);
+		return "redirect:/list-todos";
+	}
+	
+	@RequestMapping(value="/update-todo", method = RequestMethod.GET)
+	public String showUpdateTodoPage(ModelMap model, @RequestParam int id) {
+		Todo todo = service.getTodo(id);
+		model.put("todo", todo);
+		return "todo";
+	}
+
+	@RequestMapping(value="/update-todo", method = RequestMethod.POST)
+	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+		if(result.hasErrors()){
+			return "todo";
+		}
+		System.out.println(service.getTodos((String) model.get("name")));
+		todo.setUser((String) model.get("name"));
+		System.out.println((String) model.get("name"));
+		service.updateTodo(todo);
+		System.out.println(service.getTodos((String) model.get("name")));
 		return "redirect:/list-todos";
 	}
 	
