@@ -21,7 +21,6 @@
 		</fieldset>
 		<button type="submit" class="btn btn-success">Add</button>
 	</form:form>
-
 </div>
 
 <%@ include file="common/footer.jspf"%>

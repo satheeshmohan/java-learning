@@ -10,6 +10,8 @@
 					Profile</a></li>
 			<li class="active"><a type="button" href="/list-todos">Manage
 					Todo's</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-nav-right">
 			<li class="active"><a type="button" href="/logout">Logout</a></li>
 		</ul>
 	</div>
