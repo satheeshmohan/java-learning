@@ -36,11 +36,15 @@ public class ProfileController {
 
 	@RequestMapping(value = "/myprofile", method = RequestMethod.GET)
 	public String myProfile(ModelMap model) {
-		String name = (String) model.get("name");
+		String name = getLoggedinUserName(model);
 		model.addAttribute("profile", new Profile(name, "", new Date(), "", "", "", 0));
 		Profile profileModel = service.getProfile(name);
 		model.put("profile", profileModel);
 		return "myprofile";
+	}
+
+	private String getLoggedinUserName(ModelMap model) {
+		return (String) model.get("name");
 	}
 
 	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
