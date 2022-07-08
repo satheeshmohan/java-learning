@@ -8,7 +8,7 @@
 			<li class="active"><a type="button" href="/">Home</a></li>
 			<li class="active"><a type="button" href="/myprofile">My
 					Profile</a></li>
-			<li class="active"><a type="button" href="list-todos">Manage
+			<li class="active"><a type="button" href="/list-todos">Manage
 					Todo's</a></li>
 			<li class="active"><a type="button" href="/logout">Logout</a></li>
 		</ul>
