@@ -19,8 +19,9 @@ public class LoginController {
 	LoginService service;
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String showLoginPage() {
-		return "login";
+	public String showLoginPage(ModelMap model) {
+		model.put("name", "saan");
+		return "welcome";
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -32,31 +33,4 @@ public class LoginController {
 	public String showHomePage() {
 		return "welcome";
 	}
-	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password) {
-		boolean isValidUser = service.validateUser(name, password);
-		//return "welcome";
-		if(!isValidUser) {
-			model.put("validationMessage", "Invalid username or password");
-			return "login";
-		}
-		else {
-			model.put("name", name);
-			model.put("password", password);
-			return "welcome";
-		}
-	}
-	/*
-	@RequestMapping(value="/error", method = RequestMethod.GET)
-	public String errorPage() {
-		return "error";
-	}
-	
-	@RequestMapping("/welcome1")
-	@ResponseBody
-	public String welcomeMessage() {
-		return "Welcome to Java Sprint";
-	}*/
-	
 }
