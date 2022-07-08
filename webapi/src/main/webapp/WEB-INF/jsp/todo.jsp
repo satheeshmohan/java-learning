@@ -1,51 +1,33 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
+<%@ include file="common/footer.jspf"%>
 
-<html>
-<head>
-<title>Welcome</title>
-<link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="webjars/bootstrap-datepicker/1.0.1/css/datepicker.css"
-	rel="stylesheet">
-</head>
-<body>
-	<div class="container">
-		<h2>Add Todos for ${name}</h2>
-		<form:form method="post" class="form-group" modelAttribute="todo">
-			<!-- modelAttribute commandName -->
-			<form:hidden path="id" />
-			<fieldset>
-				<form:label path="desc">Description</form:label>
-				<form:input type="text" path="desc" class="form-control"
-					required="required" />
-				<form:errors path="desc" cssClass="text-warning" />
-			</fieldset>
-			<fieldset>
-				<form:label path="targetDate">Target Date</form:label>
-				<form:input type="text" path="targetDate" class="form-control"
-					required="required" />
-				<form:errors path="targetDate" cssClass="text-warning" />
-			</fieldset>
-			<button type="submit" class="btn btn-success">Add</button>
-		</form:form>
+<div class="container">
+	<h2>Add Todos for ${name}</h2>
+	<form:form method="post" class="form-group" modelAttribute="todo">
+		<!-- modelAttribute commandName -->
+		<form:hidden path="id" />
+		<fieldset>
+			<form:label path="desc">Description</form:label>
+			<form:input type="text" path="desc" class="form-control"
+				required="required" />
+			<form:errors path="desc" cssClass="text-warning" />
+		</fieldset>
+		<fieldset>
+			<form:label path="targetDate">Target Date</form:label>
+			<form:input type="text" path="targetDate" class="form-control"
+				required="required" />
+			<form:errors path="targetDate" cssClass="text-warning" />
+		</fieldset>
+		<button type="submit" class="btn btn-success">Add</button>
+	</form:form>
 
-		<div>
-			<a type="button" href="/home">Home</a>
-		</div>
-		<div>
-			<a type="button" href="/list-todos">Manage Todos</a>
-		</div>
-	</div>
+</div>
 
-	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
-	<script src="webjars/bootstrap/5.0.1/js/bootstrap.min.js"></script>
-	<script
-		src="webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js"></script>
+<%@ include file="common/footer.jspf"%>
 
-	<script>
-		$('#targetDate').datepicker({
-			format : 'dd/mm/yyyy'
-		});
-	</script>
-</body>
-</html>
+<script>
+	$('#targetDate').datepicker({
+		format : 'dd/mm/yyyy'
+	});
+</script>
