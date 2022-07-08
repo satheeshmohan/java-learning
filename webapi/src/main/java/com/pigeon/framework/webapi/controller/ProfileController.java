@@ -26,14 +26,14 @@ public class ProfileController {
 
 	@Autowired
 	ProfileService service;
-	
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		//Date - dd/MM/yyyy
+		// Date - dd/MM/yyyy
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
-	
+
 	@RequestMapping(value = "/myprofile", method = RequestMethod.GET)
 	public String myProfile(ModelMap model) {
 		String name = (String) model.get("name");
@@ -42,44 +42,45 @@ public class ProfileController {
 		model.put("profile", profileModel);
 		return "myprofile";
 	}
-	
+
 	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
 	public String saveMyProfile(ModelMap model, @Valid Profile profile, BindingResult results) {
-		if(results.hasErrors()) {
-			///model.put("error", "Error while updating profile...");
+		if (results.hasErrors()) {
+			/// model.put("error", "Error while updating profile...");
 			return "myprofile";
 		}
 		System.out.println(profile.name);
-		//Profile profile = new Profile(name, email, dob, address, city, country, pin); 
+		// Profile profile = new Profile(name, email, dob, address, city, country, pin);
 		Profile profileModel = service.saveProfile(profile);
 		profileModel = service.getProfile(profile.name);
 		model.put("profile", profileModel);
 		return "myprofile";
 	}
-	
-	/*@RequestMapping(value = "myprofile", method = RequestMethod.POST)
-	public String saveMyProfile(ModelMap model, 
-			@RequestParam String name,
-			@RequestParam String email,
-			@RequestParam String dob,
-			@RequestParam String address,
-			@RequestParam String city,
-			@RequestParam String country,
-			@RequestParam String pin
-			) {
-		System.out.println(name);
-		Profile profile = new Profile(name, email, dob, address, city, country, pin); 
-		Profile profileModel = service.saveProfile(profile);
-		profileModel = service.getProfile(name);
-		System.out.println(name);
-		model.clear();
-		model.put("name", profileModel.name);
-		model.put("email", profileModel.email);
-		model.put("dob", profileModel.dob);
-		model.put("address", profileModel.address);
-		model.put("city", profileModel.city);
-		model.put("country", profileModel.country);
-		model.put("pin", profileModel.pin);
-		return "myprofile";
-	}*/
+
+	/*
+	 * @RequestMapping(value = "myprofile", method = RequestMethod.POST) public
+	 * String saveMyProfile(ModelMap model,
+	 * 
+	 * @RequestParam String name,
+	 * 
+	 * @RequestParam String email,
+	 * 
+	 * @RequestParam String dob,
+	 * 
+	 * @RequestParam String address,
+	 * 
+	 * @RequestParam String city,
+	 * 
+	 * @RequestParam String country,
+	 * 
+	 * @RequestParam String pin ) { System.out.println(name); Profile profile = new
+	 * Profile(name, email, dob, address, city, country, pin); Profile profileModel
+	 * = service.saveProfile(profile); profileModel = service.getProfile(name);
+	 * System.out.println(name); model.clear(); model.put("name",
+	 * profileModel.name); model.put("email", profileModel.email); model.put("dob",
+	 * profileModel.dob); model.put("address", profileModel.address);
+	 * model.put("city", profileModel.city); model.put("country",
+	 * profileModel.country); model.put("pin", profileModel.pin); return
+	 * "myprofile"; }
+	 */
 }

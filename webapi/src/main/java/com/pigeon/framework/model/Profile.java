@@ -17,21 +17,21 @@ public class Profile {
 	public String address;
 	public String city;
 	public String country;
-	//@Length(min = 6, max = 6, message = "Pin code should be 6 digit...")
+	// @Length(min = 6, max = 6, message = "Pin code should be 6 digit...")
 	public int pin;
-	
+
 	public Profile() {
-		
+
 	}
-	
+
 	public Profile(String name, String email, Date dob, String address, String city, String country, int pin) {
-		this.name=name;
-		this.email=email;
-		this.dob=dob;
-		this.address=address;
-		this.city=city;
-		this.country=country;
-		this.pin=pin;
+		this.name = name;
+		this.email = email;
+		this.dob = dob;
+		this.address = address;
+		this.city = city;
+		this.country = country;
+		this.pin = pin;
 	}
 
 	@Override

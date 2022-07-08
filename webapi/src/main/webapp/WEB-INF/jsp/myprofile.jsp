@@ -1,15 +1,17 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html>
 <head>
 <title>My Profile</title>
-<link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<h2>My Profile</h2>
-		<form:form method="POST" class="form-group" modelAttribute="profile"> <!-- modelAttribute commandName -->
+		<form:form method="POST" class="form-group" modelAttribute="profile">
+			<!-- modelAttribute commandName -->
 			<fieldset>
 				<form:label path="name">Name</form:label>
 				<form:input path="name" type="text" value="${name}" />
@@ -40,9 +42,13 @@
 				<form:input path="pin" type="text" value="${pin}" />
 			</fieldset>
 			<div class="text-warning">${error}</div>
-			<div><input type="submit" value="Save"/></div>
+			<div>
+				<input type="submit" value="Save" />
+			</div>
 		</form:form>
-	    <div><a type="button" href="/home">Home</a></div>
+		<div>
+			<a type="button" href="/home">Home</a>
+		</div>
 	</div>
 	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
 	<script src="webjars/bootstrap/5.0.1/js/bootstrap.min.js"></script>

@@ -9,13 +9,15 @@ import com.pigeon.framework.model.Profile;
 
 @Component
 public class ProfileService {
-	static Profile profile = new Profile("test", "test@test.com", new Date(), "Bangalore south", "Bangalore", "India", 560068);
+	static Profile profile = new Profile("test", "test@test.com", new Date(), "Bangalore south", "Bangalore", "India",
+			560068);
+
 	public Profile getProfile(String name) {
 		return profile;
 	}
-	
+
 	public Profile saveProfile(Profile _profile) {
-		profile=_profile;
+		profile = _profile;
 		return profile;
 	}
 }
