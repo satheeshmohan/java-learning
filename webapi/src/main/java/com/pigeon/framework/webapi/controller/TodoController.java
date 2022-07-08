@@ -68,11 +68,8 @@ public class TodoController {
 		if(result.hasErrors()){
 			return "todo";
 		}
-		System.out.println(service.getTodos((String) model.get("name")));
 		todo.setUser((String) model.get("name"));
-		System.out.println((String) model.get("name"));
 		service.updateTodo(todo);
-		System.out.println(service.getTodos((String) model.get("name")));
 		return "redirect:/list-todos";
 	}
 	

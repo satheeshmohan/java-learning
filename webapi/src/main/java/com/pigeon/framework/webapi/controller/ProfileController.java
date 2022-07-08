@@ -27,14 +27,6 @@ public class ProfileController {
 		model.addAttribute("profile", new Profile(name, "", "", "", "", "", ""));
 		Profile profileModel = service.getProfile(name);
 		model.put("profile", profileModel);
-		/*model.clear();
-		model.put("name", profileModel.name);
-		model.put("email", profileModel.email);
-		model.put("dob", profileModel.dob);
-		model.put("address", profileModel.address);
-		model.put("city", profileModel.city);
-		model.put("country", profileModel.country);
-		model.put("pin", profileModel.pin);*/
 		return "myprofile";
 	}
 	
@@ -47,16 +39,7 @@ public class ProfileController {
 		//Profile profile = new Profile(name, email, dob, address, city, country, pin); 
 		Profile profileModel = service.saveProfile(profile);
 		profileModel = service.getProfile(profile.name);
-		System.out.println(profile.name);
 		model.put("profile", profileModel);
-		/*model.clear();
-		model.put("name", profileModel.name);
-		model.put("email", profileModel.email);
-		model.put("dob", profileModel.dob);
-		model.put("address", profileModel.address);
-		model.put("city", profileModel.city);
-		model.put("country", profileModel.country);
-		model.put("pin", profileModel.pin);*/
 		return "myprofile";
 	}
 	

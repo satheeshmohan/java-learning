@@ -15,7 +15,7 @@
 			</fieldset>
 			<fieldset>
 				<form:label path="email">Email</form:label>
-				<form:input path="email" type="text" value="${email}" />
+				<form:input path="email" type="text" value="${email}" required="required" />
 				<form:errors path="email" cssClass="text-warning"></form:errors>
 			</fieldset>
 			<fieldset>
