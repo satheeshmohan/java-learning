@@ -1,5 +1,7 @@
 package com.pigeon.framework.webapi.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class ProfileController {
 	@RequestMapping(value = "/myprofile", method = RequestMethod.GET)
 	public String myProfile(ModelMap model) {
 		String name = (String) model.get("name");
-		model.addAttribute("profile", new Profile(name, "", "", "", "", "", ""));
+		model.addAttribute("profile", new Profile(name, "", new Date(), "", "", "", 0));
 		Profile profileModel = service.getProfile(name);
 		model.put("profile", profileModel);
 		return "myprofile";
