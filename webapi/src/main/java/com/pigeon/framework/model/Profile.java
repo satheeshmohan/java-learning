@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 public class Profile {
 	public String name;
 	@NotNull()
+	@Size(min = 5, message = "Email length must by at least 5 charachers...")
 	public String email;
 	public String dob;
 	public String address;

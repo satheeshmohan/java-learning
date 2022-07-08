@@ -15,7 +15,7 @@
 			</fieldset>
 			<fieldset>
 				<form:label path="email">Email</form:label>
-				<form:input path="email" type="text" value="${email}" required="required" />
+				<form:input path="email" type="text" value="${email}" />
 				<form:errors path="email" cssClass="text-warning"></form:errors>
 			</fieldset>
 			<fieldset>
@@ -38,6 +38,7 @@
 				<form:label path="pin">Pin</form:label>
 				<form:input path="pin" type="text" value="${pin}" />
 			</fieldset>
+			<div class="text-warning">${error}</div>
 			<div><input type="submit" value="Save"/></div>
 		</form:form>
 	    <div><a type="button" href="/home">Home</a></div>

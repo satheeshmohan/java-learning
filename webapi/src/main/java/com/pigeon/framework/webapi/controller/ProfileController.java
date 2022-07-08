@@ -33,6 +33,7 @@ public class ProfileController {
 	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
 	public String saveMyProfile(ModelMap model, @Valid Profile profile, BindingResult results) {
 		if(results.hasErrors()) {
+			///model.put("error", "Error while updating profile...");
 			return "myprofile";
 		}
 		System.out.println(profile.name);
